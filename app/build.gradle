@@ -1,0 +1,103 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion 33
+
+    defaultConfig {
+        applicationId "com.jc666.androidtestexample"
+        minSdkVersion 28
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+
+    /**
+     *  測試相關library
+     *  使用Robolectric，需要額外的設定。
+     *
+     *  */
+    testOptions.unitTests.includeAndroidResources = true
+}
+
+dependencies {
+
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.appcompat:appcompat:1.6.0'
+    implementation 'com.google.android.material:material:1.6.0'
+
+    /**
+     *  測試相關library
+     *  一般的Unit Test，針對Func進行單一測試
+     *
+     *  參考範例:
+     *  RegisterVerifyUnitTest code.
+     *  */
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    /**
+     *  測試相關library
+     *  Espresso是一個讓你可以撰寫Android UI測試的框架。
+     *  你可以用id或文字的方式來取得一個元件，
+     *  模擬使用者點擊、
+     *  輸入資料等使用者行為及驗證App上是否有出現預期的功能。
+     *
+     *  參考範例:
+     *  RegisterUITest code.
+     *  RegisterVerifyUnitTest code.
+     *
+     *  */
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    /**
+     *  測試相關library
+     *  使用Mockito來模擬與SharedPreference的互動。
+     *
+     *  參考範例:
+     *  SharedPreferenceManagerTest code.
+     *  RepositorySharedPreferencesMockTest code.
+     *  RepositoryTest code.
+     *
+     *  */
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation 'org.mockito:mockito-inline:2.21.0'
+
+    /**
+     *  測試相關library
+     *  使用Robolectric library。
+     *  Robolectric讓我們像單元測試一樣的測試與Android UI元件的互動。
+     *
+     *  參考範例:
+     *  MainActivityTest code.
+     *
+     *  */
+    testImplementation "org.robolectric:robolectric:4.9"
+
+}

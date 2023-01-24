@@ -1,0 +1,29 @@
+package com.jc666.androidtestexample.utils
+
+import java.util.*
+
+class RegisterVerify {
+
+    fun isLoginIdVerify(loginId: String): Boolean {
+        var isLoginIdOK = false
+        //帳號至少6碼，第1碼為英文，j
+        if (loginId.length >= 6) {
+            if (loginId.uppercase(Locale.ROOT).first() in 'A'..'Z') {
+                isLoginIdOK = true
+            }
+        }
+        return isLoginIdOK
+    }
+
+    fun isPasswordVerify(pwd: String): Boolean {
+        var isPwdOK = false
+        if (pwd.length >= 8) {
+            if (pwd.uppercase(Locale.ROOT).first() in 'A'..'Z') {
+                if (pwd.findAnyOf((0..9).map { it.toString() }) != null) {
+                    isPwdOK = true
+                }
+            }
+        }
+        return isPwdOK
+    }
+}
